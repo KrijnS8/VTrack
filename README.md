@@ -215,6 +215,7 @@ The application will include:
 * ASP.NET Core Web API
 * Entity Framework Core
 * PostgreSQL
+* PostGIS
 * FluentValidation
 * Serilog
 * JWT Authentication
