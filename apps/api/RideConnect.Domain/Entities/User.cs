@@ -27,4 +27,8 @@ public class User
     public bool IsVerified { get; set; }
 
     public bool IsActive { get; set; }
+
+    public ICollection<UserMotorcycle> UserMotorcycles { get; set; } = [];
+    public ICollection<RideRequest> CreatedRideRequests { get; set; } = [];
+    public ICollection<RideParticipant> RideParticipations { get; set; } = [];
 }

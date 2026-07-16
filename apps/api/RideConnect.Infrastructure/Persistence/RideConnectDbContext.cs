@@ -17,4 +17,8 @@ public class RideConnectDbContext : DbContext
 	}
 
 	public DbSet<User> Users => Set<User>();
+	public DbSet<UserMotorcycle> UserMotorcycles => Set<UserMotorcycle>();
+	public DbSet<Manufacturer> Manufacturers => Set<Manufacturer>();
+	public DbSet<RideRequest> RideRequests => Set<RideRequest>();
+	public DbSet<RideParticipant> RideParticipants => Set<RideParticipant>();
 }
