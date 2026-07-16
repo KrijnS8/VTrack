@@ -1,12 +1,20 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using RideConnect.Application.Features.Authentication.Interfaces;
 using RideConnect.Application.Features.Authentication.Services;
+using RideConnect.Application.Features.Authentication.Validators;
+using RideConnect.Application.Persistence;
 using RideConnect.Infrastructure.Persistence;
+using RideConnect.Infrastructure.Repositories;
 
 // Create builder
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+builder.Services.AddValidatorsFromAssemblyContaining<RegisterRequestValidator>();
+builder.Services.AddFluentValidationAutoValidation();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -18,6 +26,9 @@ builder.Services.AddDbContext<RideConnectDbContext>(options =>
 
 //  Register services
 builder.Services.AddScoped<IAuthService, AuthService>();
+
+// Register repositories
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 
