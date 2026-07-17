@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using RideConnect.API.Extensions;
 using RideConnect.Application.Features.Authentication.Interfaces;
 using RideConnect.Application.Features.Authentication.DTOs;
 
@@ -14,13 +15,21 @@ public class AuthController(IAuthService authService) : ControllerBase
     public async Task<IActionResult> Register(RegisterRequest request)
     {
         var response = await _authService.RegisterAsync(request);
-        return Ok(response);
+
+        if (response.IsFailure)
+            return response.ToActionResult();
+        
+        return Ok(response.Value);
     }
 
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginRequest request)
     {
         var response = await _authService.LoginAsync(request);
-        return Ok(response);
+        
+        if (response.IsFailure)
+            return response.ToActionResult();
+        
+        return Ok(response.Value);
     }
 }
