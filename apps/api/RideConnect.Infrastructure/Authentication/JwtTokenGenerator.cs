@@ -1,10 +1,10 @@
+using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using RideConnect.Application.Persistence;
-using RideConnect.Domain.Common;
 using RideConnect.Domain.Entities;
 
 namespace RideConnect.Infrastructure.Authentication;

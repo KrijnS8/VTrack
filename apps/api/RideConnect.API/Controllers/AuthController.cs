@@ -7,7 +7,7 @@ using RideConnect.Application.Features.Authentication.DTOs;
 namespace RideConnect.API.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/auth")]
 public class AuthController(IAuthService authService) : ControllerBase
 {
     private readonly IAuthService _authService = authService;
