@@ -9,7 +9,8 @@ namespace RideConnect.Application.Features.Authentication.Services;
 
 public sealed class AuthService(
     IUserRepository userRepository,
-    IPasswordHasher passwordHasher
+    IPasswordHasher passwordHasher,
+    IJwtTokenGenerator jwtTokenGenerator
     ) : IAuthService
 {
     public async Task<Result<AuthResponse>> RegisterAsync(RegisterRequest request)
@@ -49,14 +50,16 @@ public sealed class AuthService(
         // send verification email
         
         // generate JWT
+        var token = jwtTokenGenerator.Generate(user);
         
         // return token
         var response = new AuthResponse
         {
             // change to refresh token
-            AccessToken = "token-" + user.Username,
-            ExpiresAt = DateTimeOffset.UtcNow.AddHours(1)
+            AccessToken = token.AccessToken,
+            ExpiresAt = token.ExpiresAt
         };
+        
         return Result<AuthResponse>.Success(response);
     }
     
@@ -77,13 +80,14 @@ public sealed class AuthService(
         }
         
         // generate JWT
+        var token = jwtTokenGenerator.Generate(user);
         
         // return token
         var response = new AuthResponse
         {
             // change to refresh token
-            AccessToken = "token-" + user.Username,
-            ExpiresAt = DateTimeOffset.UtcNow.AddHours(1)
+            AccessToken = token.AccessToken,
+            ExpiresAt = token.ExpiresAt
         };
         return Result<AuthResponse>.Success(response);
     }

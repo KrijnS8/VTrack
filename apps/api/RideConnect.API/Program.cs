@@ -1,6 +1,9 @@
+using System.Text;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using RideConnect.Application.Features.Authentication.Interfaces;
 using RideConnect.Application.Features.Authentication.Services;
 using RideConnect.Application.Features.Authentication.Validators;
@@ -25,9 +28,42 @@ builder.Services.AddDbContext<RideConnectDbContext>(options =>
     options.UseNpgsql(
         builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Add authentication
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    // TODO: remove for production, only for testing
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
+    
+    var jwtSection = builder.Configuration.GetSection(JwtConfig.SectionName);
+    
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidIssuer = jwtSection["Issuer"],
+        ValidAudience = jwtSection["Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(jwtSection["Secret"]!)),
+        ValidateIssuerSigningKey = true,
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.Zero
+    };
+});
+
+builder.Services.AddAuthorization();
+builder.Services.Configure<JwtConfig>(
+    builder.Configuration.GetSection(JwtConfig.SectionName));
+
 //  Register services
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IPasswordHasher, BCryptPasswordHasher>();
+builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 
 // Register repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -42,6 +78,10 @@ if (app.Environment.IsDevelopment())
 }
 
 // app.UseHttpsRedirection();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
 
 app.MapControllers();
 
