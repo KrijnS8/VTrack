@@ -5,6 +5,7 @@ using RideConnect.Application.Features.Authentication.Interfaces;
 using RideConnect.Application.Features.Authentication.Services;
 using RideConnect.Application.Features.Authentication.Validators;
 using RideConnect.Application.Persistence;
+using RideConnect.Infrastructure.Authentication;
 using RideConnect.Infrastructure.Persistence;
 using RideConnect.Infrastructure.Repositories;
 
@@ -26,6 +27,7 @@ builder.Services.AddDbContext<RideConnectDbContext>(options =>
 
 //  Register services
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IPasswordHasher, BCryptPasswordHasher>();
 
 // Register repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();

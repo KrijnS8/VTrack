@@ -15,3 +15,11 @@
 
 ## Manufacturer
 - [ ] Replace Manufacturer.Country with ISO 3166-1 country codes (e.g. JP, IT, DE)
+
+## User
+- [ ] Add User.Country with ISO 3166-1 country codes (e.g.)
+- [ ] Add Username invalid characters check
+
+
+## Other
+- [ ] Add result extension to return correct status code

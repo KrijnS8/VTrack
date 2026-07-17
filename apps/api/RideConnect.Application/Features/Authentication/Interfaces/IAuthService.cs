@@ -1,10 +1,11 @@
 using RideConnect.Application.Features.Authentication.DTOs;
+using RideConnect.Domain.Common;
 
 namespace RideConnect.Application.Features.Authentication.Interfaces;
 
 public interface IAuthService
 {
-    Task<AuthResponse> RegisterAsync(RegisterRequest request);
+    Task<Result<AuthResponse>> RegisterAsync(RegisterRequest request);
     
-    Task<AuthResponse> LoginAsync(LoginRequest request);
+    Task<Result<AuthResponse>> LoginAsync(LoginRequest request);
 }
