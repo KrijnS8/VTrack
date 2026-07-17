@@ -1,0 +1,19 @@
+
+User
+
+Motorcycle
+
+
+Group
+GroupMember
+
+
+RideRequest     // Small ride
+RideRequestParticipant
+
+
+RideOut         // Big group ride
+RideOutParticipant
+
+
+Message

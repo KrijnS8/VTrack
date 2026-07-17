@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apps", "apps", "{B28B38BD-ED5E-49D7-AB35-689F5F04484A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{4D7D3C6C-421E-4446-9F5F-0F2526AC668B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RideConnect.API", "apps\api\RideConnect.API\RideConnect.API.csproj", "{429AE08E-4528-4593-A496-0D884DD5E7BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RideConnect.Application", "apps\api\RideConnect.Application\RideConnect.Application.csproj", "{A8789367-C302-45AC-87FA-CFD2092A8208}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RideConnect.Domain", "apps\api\RideConnect.Domain\RideConnect.Domain.csproj", "{485CC118-B809-48BD-A896-2BABD2767D0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RideConnect.Infrastructure", "apps\api\RideConnect.Infrastructure\RideConnect.Infrastructure.csproj", "{A2BF8145-B810-44C8-AE51-DF16F15C3356}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{429AE08E-4528-4593-A496-0D884DD5E7BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{429AE08E-4528-4593-A496-0D884DD5E7BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{429AE08E-4528-4593-A496-0D884DD5E7BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{429AE08E-4528-4593-A496-0D884DD5E7BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8789367-C302-45AC-87FA-CFD2092A8208}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8789367-C302-45AC-87FA-CFD2092A8208}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8789367-C302-45AC-87FA-CFD2092A8208}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8789367-C302-45AC-87FA-CFD2092A8208}.Release|Any CPU.Build.0 = Release|Any CPU
+		{485CC118-B809-48BD-A896-2BABD2767D0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{485CC118-B809-48BD-A896-2BABD2767D0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{485CC118-B809-48BD-A896-2BABD2767D0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{485CC118-B809-48BD-A896-2BABD2767D0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2BF8145-B810-44C8-AE51-DF16F15C3356}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2BF8145-B810-44C8-AE51-DF16F15C3356}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2BF8145-B810-44C8-AE51-DF16F15C3356}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2BF8145-B810-44C8-AE51-DF16F15C3356}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4D7D3C6C-421E-4446-9F5F-0F2526AC668B} = {B28B38BD-ED5E-49D7-AB35-689F5F04484A}
+		{429AE08E-4528-4593-A496-0D884DD5E7BC} = {4D7D3C6C-421E-4446-9F5F-0F2526AC668B}
+		{A8789367-C302-45AC-87FA-CFD2092A8208} = {4D7D3C6C-421E-4446-9F5F-0F2526AC668B}
+		{485CC118-B809-48BD-A896-2BABD2767D0F} = {4D7D3C6C-421E-4446-9F5F-0F2526AC668B}
+		{A2BF8145-B810-44C8-AE51-DF16F15C3356} = {4D7D3C6C-421E-4446-9F5F-0F2526AC668B}
+	EndGlobalSection
+EndGlobal
