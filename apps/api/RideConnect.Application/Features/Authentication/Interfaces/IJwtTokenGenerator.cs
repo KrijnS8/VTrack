@@ -1,7 +1,6 @@
-using RideConnect.Domain.Common;
 using RideConnect.Domain.Entities;
 
-namespace RideConnect.Application.Persistence;
+namespace RideConnect.Application.Features.Authentication.Interfaces;
 
 public interface IJwtTokenGenerator
 {

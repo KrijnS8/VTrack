@@ -17,15 +17,11 @@ public sealed class AuthService(
     {
         // check if email exists
         if (await userRepository.GetByEmailAsync(request.Email) is not null)
-        {
             return Result<AuthResponse>.Failure(UserErrors.EmailTaken);
-        }
         
         // check if username exists
         if (await userRepository.GetByUsernameAsync(request.Username) is not null)
-        {
             return Result<AuthResponse>.Failure(UserErrors.UsernameTaken);
-        }
         
         // create user
         var user = new User
@@ -70,14 +66,10 @@ public sealed class AuthService(
             : await userRepository.GetByUsernameAsync(request.Login);
 
         if (user is null)
-        {
             return Result<AuthResponse>.Failure(UserErrors.InvalidCredentials);
-        }
 
         if (!passwordHasher.Verify(user.PasswordHash, request.Password))
-        {
             return Result<AuthResponse>.Failure(UserErrors.InvalidCredentials);
-        }
         
         // generate JWT
         var token = jwtTokenGenerator.Generate(user);
