@@ -7,6 +7,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RideConnect.API.Extensions;
+using RideConnect.Application.Features.Users.DTOs;
 using RideConnect.Application.Features.Users.Interfaces;
 
 namespace RideConnect.API.Controllers;
@@ -15,34 +16,47 @@ namespace RideConnect.API.Controllers;
 [Route("api/users")]
 public class UsersController(IUserService userService) : ControllerBase
 {
+    // Get Current User Profile
     [Authorize]
     [HttpGet("me")]
     public async Task<IActionResult> GetMe()
     {
-        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-        if (!Guid.TryParse(userId, out var id))
+        if (!User.TryGetUserId(out var userId))
             return Unauthorized();
         
-        var response = await userService.GetCurrentUserAsync(id);
+        var response = await userService.GetCurrentUserAsync(userId);
 
         if (response.IsFailure)
             return response.ToActionResult();
         
         return Ok(response.Value);
     }
+
+    // Update User Password
+    [Authorize]
+    [HttpPut("me/password")]
+    public Task<IActionResult> UpdatePassword(UpdatePasswordRequest request)
+    {
+        throw new NotImplementedException(); 
+    }
+
+    // Update User Email
+    [Authorize]
+    [HttpPut("me/email")]
+    public Task<IActionResult> UpdateEmail(UpdateEmailRequest request)
+    {
+        throw new NotImplementedException();
+    }
+
+    // Update User Profile
+    [Authorize]
+    [HttpPut("me")]
+    public Task<IActionResult> UpdateMe(UpdateUserRequest request)
+    {
+        throw new NotImplementedException();  
+    }
     
-    // [Authorize]
-    // [HttpPut("me")]
-    // public Task<IActionResult> UpdateMe()
-    // {
-    //     // Add Request DTO
-    //     
-    //     var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-    //     Console.WriteLine("\n\n" + userId + "\n\n");
-    //     throw new NotImplementedException();
-    // }
-    
+    // Get User Profile
     [HttpGet("{userId:guid}")]
     public Task<IActionResult> GetById(Guid userId)
     {
